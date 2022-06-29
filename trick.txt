@@ -1,0 +1,45 @@
+;tạo file
+mov ah,3ch
+mov cx,0
+lea dx, tên file
+int 21h
+
+(con trỏ file được tạo ở ax)
+(nên sử dụng mov P,ax để lưu con trỏ khi sử dụng)
+
+;mở file 
+mov ah,3dh
+mov al,0
+lea dx, tên file
+int 21h
+
+;đọc file
+mov ah,3fh
+mov bx,P
+mov cx, số lượng ký tự có trong file đã lưu
+lea dx, chuỗi đọc ra console
+int 21h
+
+;xóa file (muốn xóa file thì phải mở file + đóng file trước rồi mới được xóa)
+mov ah,41h
+lea dx, tên file
+int 21h
+
+;sửa tên file (muốn sửa thì thì phải mở file + đóng file trước rồi mới được sửa) 
+mov ah,56h
+lea dx, tên file cũ
+lea di, tên file mới
+int 21h
+
+;ghi file
+
+mov ah,40h
+mov bx,P (con trỏ file)
+mov cx, số lượng ký tự
+lea dx, chuỗi ghi vào file
+int 21h
+
+;đóng file
+mov ah,3eh
+mov bx,P
+int 21h
